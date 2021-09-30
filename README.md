@@ -15,7 +15,7 @@ The functions are encapsulated in a class for easy use.
 
 ### Encoding
 
-- 3GPP encoding (without bit-reversal permutation)  <img src="https://render.githubusercontent.com/render/math?math=\mathbf x = \mathbf u \mathbf F_n">
+- 3GPP encoding (without bit-reversal permutation)  <img src="https://render.githubusercontent.com/render/math?math=\mathbf x = \mathbf u \mathbf G_n">
 
 ### Decoding
 
