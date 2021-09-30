@@ -77,7 +77,7 @@ With the above equation, the encoding function<img src="https://render.githubuse
 
 For each non-leaf node, it receives a soft bits vector from its parents and send the corresponding  hard decision vector  back to its parent. It involves 6 messages and 3 operations in the following sequence (  Refer to the following diagram)
 
-![decoing](Aux/decording.png)
+![decoing](Aux/decoding.png)
 
 
 ![decoing](Aux/SC_decording.png)
