@@ -1,37 +1,27 @@
-## Welcome to GitHub Pages
+# Polar-Code-CPP
+Polar Code C++ Implementation
 
-You can use the [editor on GitHub](https://github.com/just1nGH/Polar-Code-CPP/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+try out *`example_run.m`  which shows how to use the implemented polar codes.*
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Features
 
-### Markdown
+C++ 17 needed to run the examples and use the code.  No additional package is used, only standard library.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+The functions are encapsulated in a class for easy use.
 
-```markdown
-Syntax highlighted code block
+### code construction ：
 
-# Header 1
-## Header 2
-### Header 3
+- channel polarization using Huawei approximation [3]
 
-- Bulleted
-- List
+### Encoding
 
-1. Numbered
-2. List
+- 3GPP encoding (without bit-reversal permutation)  $\mathbf x = \mathbf u \mathbf F_n$
 
-**Bold** and _Italic_ and `Code` text
+### Decoding
 
-[Link](url) and ![Image](src)
-```
+- SC decoder
+- CRC-aided SC decoder
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Rate matching and rate recovery
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/just1nGH/Polar-Code-CPP/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+- to support different codeword length and code rate
