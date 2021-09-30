@@ -66,16 +66,17 @@ The functions are encapsulated in a class for easy use.
 
 $$ \begin{aligned}\mathbf{c}=\mathbf{u} \mathbf{G}_{N} \\&=\left[\mathbf{u}_{1}, \mathbf{u}_{2}\right]\left[\begin{array}{ll}G_{\frac{N}{2}} & 0 \\G_{\frac{N}{2}} & G_{\frac{N}{2}}\end{array}\right] \\&=\left[\left(\mathbf{u}_{1} \oplus \mathbf{u}_{2}\right) G_{\frac{N}{2}}, \mathbf{u}_{2} G_{\frac{N}{2}}\right] \\& \mathbf{u} \in \mathbb{B}^{1 \times N} \\& \mathbf{u}_{1}=\left[u_{1}, u_{2}, \ldots, u_{N / 2}\right] \\& \mathbf{u}_{2}=\left[u_{N / 2+1}, u_{N / 2+2}, \ldots, u_{N}\right]\end{aligned}$$
 
-With the above equation, the encoding function($f(\mathbf u)$) can be implemented recursively as 
+With the above equation, the encoding function<img src="https://render.githubusercontent.com/render/math?math=f(\mathbf u)">can be implemented recursively as 
 
-$$f(\mathbf u ) = [f(\mathbf u_1 \oplus \mathbf u_2),f(\mathbf u_2) ] $$
+<img src="https://render.githubusercontent.com/render/math?math=f(\mathbf u ) = [f(\mathbf u_1 \oplus \mathbf u_2),f(\mathbf u_2) ]">
+
 
 ### SC decoding :
 
 For each non-leaf node, it receives a soft bits vector from its parents and send the corresponding  hard decision vector  back to its parent. It involves 6 messages and 3 operations in the following sequence (  Refer to the following diagram)
 
 1. node $i$ receive a soft bits vector from its parent node $\alpha_v$ 
-2. node $i$  perform the first operation (check node operation) to calculate soft bits vector $\alpha_l$ for its left child: node $2i$ (for derivation check [5] week-2 lecture-1)
+2. node $i$  perform the first operation (check node operation) to calculate soft bits vector $\alpha_l$ for its left child: node $2i$ (for derivation check [6] week-2 lecture-1)
 
 $$\begin{align*}\alpha_l &= f(\alpha_v^{(1)}, \alpha_v^{(2)})\\ &= 2{\text{atanh}}(\tanh(a/2)\tanh(b/2)) \\ &\approx \text{sgn}(a.*b)\min(|a||b|)\\&\alpha_v^{(1)} = [\alpha_{v,1},\alpha_{v,2},...,\alpha_{v,N/2}], \\&\alpha_v^{(2)} = [\alpha_{v,N/2+1},\alpha_{v,N/2+2},...,\alpha_{v,N}], \\&N = {\text{card}}(\alpha_v)\end{align*}$$
 
@@ -89,7 +90,7 @@ $$\alpha_r = (1- 2\beta_l)b + a$$
 
 $$\beta = [\beta_l \oplus \beta_r,\beta_r]$$
 
-![decoing](SC_decording.png)
+![decoing](Aux/SC_decording.png)
 
 
 For each leaf node:
@@ -101,7 +102,7 @@ For each leaf node:
 
 Run L SC decoders in parallel,  all operations for non-leaf node are the same. when reaching a leaf node, for information bit, instead of make threshold detection, it generates two candidates: the candidate agrees with threshold detection and the candidate opposes threshold detection.  A penalty is put on the oppose candidate. so that L decoders, becomes 2L candidates. Then a sort and prune procedure is performed based on path metrics to select L candidates with least path metrics.
 
-The idea is simple, but when it comes to the implementation, it involves a big complexity in terms of the time and memory. As the information(soft bits, hard decisions, PM) of each node for each SC encoder need  to be stored/ exchanged /compared when needed. It involves a 3D matrix to store these information:  the first dimension is for list of SC decoders, the second dimension is for nodes in the binary tree representation, the third dimension is for soft bits/hard bits. [5]
+The idea is simple, but when it comes to the implementation, it involves a big complexity in terms of the time and memory. As the information(soft bits, hard decisions, PM) of each node for each SC encoder need  to be stored/ exchanged /compared when needed. It involves a 3D matrix to store these information:  the first dimension is for list of SC decoders, the second dimension is for nodes in the binary tree representation, the third dimension is for soft bits/hard bits. [6]
 
 This implementation optimizes the process, in stead of store all information of each node for all SC encoders in a 3D matrix like [5], all nodes have a shared storage of soft bits which changes (push in and pop out ) accordingly to ensure only necessary soft bits staying in the storage. This reduced time/memory complexity  dramatically. 
 
