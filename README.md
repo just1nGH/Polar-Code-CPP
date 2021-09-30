@@ -1,6 +1,8 @@
 # Polar-Code-CPP
 Polar Code C++ Implementation
 
+https://awake-shrine-7dc.notion.site/Polar-Code-C-User-Mannual-13b7daf45a224ee390955b881b8e66c1
+
 try out *`example_run.m`  which shows how to use the implemented polar codes.*
 
 ## Features
@@ -64,7 +66,7 @@ The functions are encapsulated in a class for easy use.
 
 ### **Encoding**
 
-$$ \begin{aligned}\mathbf{c}=\mathbf{u} \mathbf{G}_{N} \\&=\left[\mathbf{u}_{1}, \mathbf{u}_{2}\right]\left[\begin{array}{ll}G_{\frac{N}{2}} & 0 \\G_{\frac{N}{2}} & G_{\frac{N}{2}}\end{array}\right] \\&=\left[\left(\mathbf{u}_{1} \oplus \mathbf{u}_{2}\right) G_{\frac{N}{2}}, \mathbf{u}_{2} G_{\frac{N}{2}}\right] \\& \mathbf{u} \in \mathbb{B}^{1 \times N} \\& \mathbf{u}_{1}=\left[u_{1}, u_{2}, \ldots, u_{N / 2}\right] \\& \mathbf{u}_{2}=\left[u_{N / 2+1}, u_{N / 2+2}, \ldots, u_{N}\right]\end{aligned}$$
+![decoing](Aux/encoding.png)
 
 With the above equation, the encoding function<img src="https://render.githubusercontent.com/render/math?math=f(\mathbf u)">can be implemented recursively as 
 
@@ -75,20 +77,8 @@ With the above equation, the encoding function<img src="https://render.githubuse
 
 For each non-leaf node, it receives a soft bits vector from its parents and send the corresponding  hard decision vector  back to its parent. It involves 6 messages and 3 operations in the following sequence (  Refer to the following diagram)
 
-1. node $i$ receive a soft bits vector from its parent node $\alpha_v$ 
-2. node $i$  perform the first operation (check node operation) to calculate soft bits vector $\alpha_l$ for its left child: node $2i$ (for derivation check [6] week-2 lecture-1)
+![decoing](Aux/decording.png)
 
-$$\begin{align*}\alpha_l &= f(\alpha_v^{(1)}, \alpha_v^{(2)})\\ &= 2{\text{atanh}}(\tanh(a/2)\tanh(b/2)) \\ &\approx \text{sgn}(a.*b)\min(|a||b|)\\&\alpha_v^{(1)} = [\alpha_{v,1},\alpha_{v,2},...,\alpha_{v,N/2}], \\&\alpha_v^{(2)} = [\alpha_{v,N/2+1},\alpha_{v,N/2+2},...,\alpha_{v,N}], \\&N = {\text{card}}(\alpha_v)\end{align*}$$
-
-1. node $i$  receives the hard decision $\beta_l$ from its left child 
-2. node $i$  perform the 2nd operation (bit node operation): calculate soft bits  $\alpha_r$ for its right child node $2i+1$ and sends out . (for derivation check [5] week-2 lecture-2)
-
-$$\alpha_r = (1- 2\beta_l)b + a$$
-
-1. node $i$  receives the hard decision $\beta_r$ from its right child
-2. node  $i$ performs the third operation, combines $\beta_l$  and $\beta_r$ to obtain $\beta$ and returns to its parent
-
-$$\beta = [\beta_l \oplus \beta_r,\beta_r]$$
 
 ![decoing](Aux/SC_decording.png)
 
@@ -118,4 +108,4 @@ This implementation optimizes the process, in stead of store all information of 
 
 [5] Ochiai, Hideki, Patrick Mitran, and H. Vincent Poor. "Capacity-Approaching Polar Codes with Long Codewords and Successive Cancellation Decoding Based on Improved Gaussian Approximation." IEEE Transactions on Communications 69.1 (2020): 31-43.
 
-[5] [https://nptel.ac.in/courses/108/106/108106137/](https://nptel.ac.in/courses/108/106/108106137/)
+[6] [https://nptel.ac.in/courses/108/106/108106137/](https://nptel.ac.in/courses/108/106/108106137/)
