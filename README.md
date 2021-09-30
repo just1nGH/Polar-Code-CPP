@@ -1,8 +1,6 @@
 # Polar-Code-CPP
 Polar Code C++ Implementation
 
-https://awake-shrine-7dc.notion.site/Polar-Code-C-User-Mannual-13b7daf45a224ee390955b881b8e66c1
-
 try out *`example_run.m`  which shows how to use the implemented polar codes.*
 
 ## Features
