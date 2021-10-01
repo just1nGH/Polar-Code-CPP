@@ -125,7 +125,7 @@ void example_run_SCL()
 
         // print  progress when one SNR is finished
         str = format("Elapsed time: %.1f seconds, # tx blocks: %d,# error blocks:%d, ber: %.5f, bler %.5f", (clock() - tStart) / (double)CLOCKS_PER_SEC, n_blks_done, n_blk_errs[i], ber[i], bler[i]);
-        cout << std::string(print_len, '\b') << str;
+        cout << std::string(print_len, '\b') << str<< flush;
     }
 
     // print simulation result
@@ -255,7 +255,7 @@ void example_run_SC()
 
         // print  progress when one SNR is finished
         str = format("Elapsed time: %.1f seconds, # tx blocks: %d,# error blocks:%d, ber: %.5f, bler %.5f", (clock() - tStart) / (double)CLOCKS_PER_SEC, n_blks_done, n_blk_errs[i], ber[i], bler[i]);
-        cout << std::string(print_len, '\b') << str;
+        cout << std::string(print_len, '\b') << str<< flush;
     }
 
     // print simulation result
