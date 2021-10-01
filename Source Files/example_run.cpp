@@ -11,7 +11,7 @@ using namespace std;
 string format(const char* fmt, ...);
 vector<double> linespace(double start, double ed, int num);
 void example_run_SCL();
-//void example_run_SC();
+void example_run_SC();
 
 int main()
 {
