@@ -20,7 +20,7 @@ The functions are encapsulated in a class for easy use.
 ### Decoding
 
 - SC decoder
-- CRC-aided SC decoder
+- CRC-aided SCL decoder
 
 ### Rate matching and rate recovery
 
